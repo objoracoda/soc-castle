@@ -1,0 +1,75 @@
+site_name: Soc Castle
+site_url: https://soc.castle
+theme:
+  name: material
+  logo: assets/avatar_rect.jpg
+  favicon: assets/favicon.ico
+  features:
+    - content.code.annotate
+    - content.ode.copy
+    - content.tabs.link
+    - announce.dismiss
+    - navigation.footer
+    - header.autohide
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.path
+    - navigation.tracking
+    - search.hilight
+    - search.share
+    - search.suggest
+  font:
+    text: JetBrains Mono
+    code: Red Hat Mono
+  palette:
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: ligh)"
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+nav:
+  - 'Главная': index.md
+  - 'Вопросы Собесов':
+    - 'Анализ вредоносного ПО': sobes/analyse_po.md
+    - 'Анализ логов SIEM': sobes/analyse_siem.md
+    - 'Веб безопасность': sobes/web_sec.md
+    - 'Общие вопросы': sobes/obshie.md
+    - 'Политика безопасности': sobes/polity_sec.md
+    - 'Правовые вопросы': sobes/pravo.md
+    - 'Сетевая безопасность': sobes/net_sec.md
+  - 'Конспекты':
+      - 'AD, LDAP, KERBEROS': notes/ad_ldap_kerberos.md
+      - 'Разбор полетов с собесов': notes/sobes_polety.md
+
+
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      title: Содержание
+
+extra:
+  social:
+    - icon: simple/telegram
+      link: https://t.me/objoracoda
+    - icon: simple/github
+      link: https://github.com/objoracoda
+
+
+copyright: Copyright &copy; 2025 Олег Тарасов
