@@ -1,5 +1,5 @@
 ---
-icon: octicons/home-16
+icon: octicons/book-16
 ---
 # 🔹 Добро пожаловть в Soc Castle!
 

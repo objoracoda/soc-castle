@@ -54,6 +54,7 @@ nav:
       - 'AD, LDAP, KERBEROS': notes/ad_ldap_kerberos.md
       - 'MITRE ATT&CK': notes/mitreattack.md
       - 'Разбор полетов с собесов': notes/sobes_polety.md
+  - 'Образовательные ресурсы': study_res/res.md
 
 
 
