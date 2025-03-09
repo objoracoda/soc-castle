@@ -1,0 +1,1877 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://soc.castle/sobes/net_sec/">
+      
+      
+        <link rel="prev" href="../pravo/">
+      
+      
+        <link rel="next" href="../../notes/ad_ldap_kerberos/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Сетевая безопасность - Soc Castle</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=JetBrains+Mono:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"JetBrains Mono";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-osi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Soc Castle" class="md-header__button md-logo" aria-label="Soc Castle" data-md-component="logo">
+      
+  <img src="../../assets/avatar_rect.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Soc Castle
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Сетевая безопасность
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: ligh)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.74 3.74 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574M8.755 4.75l-.004 7.322a3.75 3.75 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25"/></svg>
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../analyse_po/" class="md-tabs__link">
+          
+  
+    
+  
+  Вопросы Собесов
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notes/ad_ldap_kerberos/" class="md-tabs__link">
+          
+  
+    
+  
+  Конспекты
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../study_res/res/" class="md-tabs__link">
+        
+  
+    
+  
+  Образовательные ресурсы
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Soc Castle" class="md-nav__button md-logo" aria-label="Soc Castle" data-md-component="logo">
+      
+  <img src="../../assets/avatar_rect.jpg" alt="logo">
+
+    </a>
+    Soc Castle
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.74 3.74 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574M8.755 4.75l-.004 7.322a3.75 3.75 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25"/></svg>
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Вопросы Собесов
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Вопросы Собесов
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyse_po/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5a1.746 1.746 0 0 0-1 3.18v1.4c-.9.13-1.74.42-2.5.86L7.39 4.35c.19-.52.14-1.12-.2-1.6C6.84 2.26 6.3 2 5.75 2c-.35 0-.7.1-1 .32-.79.55-.99 1.64-.43 2.43.34.49.88.75 1.43.75l1.18 1.68c-.43.43-.77.91-1.06 1.44-.2-.08-.41-.12-.62-.12-.45 0-.9.17-1.25.5-.67.7-.67 1.8 0 2.5.29.27.64.42 1 .5 0 .54.07 1.06.18 1.56l-1.31.35c-.31-.26-.71-.41-1.12-.41-.15 0-.31 0-.46.06a1.75 1.75 0 0 0-1.23 2.15C1.27 16.5 2 17 2.75 17c.15 0 .3 0 .46-.06.57-.16 1-.58 1.18-1.1l1.51-.41c.45.79 1.05 1.49 1.75 2.07l-1.1 2c-.55.08-1.05.39-1.34.92a1.749 1.749 0 1 0 3.08 1.66c.28-.52.27-1.12.02-1.61l1.07-1.97c.81.32 1.69.5 2.62.5h.18c-.13.26-.18.56-.18.88.08.92.84 1.62 1.75 1.62h.13c.97-.08 1.69-.92 1.62-1.88-.04-.5-.29-.94-.65-1.23.47-.21.92-.48 1.34-.79l2.34 2.34c-.1.56.06 1.13.47 1.56.35.33.8.5 1.25.5s.9-.17 1.25-.5c.67-.7.67-1.8 0-2.5-.35-.33-.8-.5-1.25-.5-.1 0-.2 0-.31.03l-2.34-2.34c.49-.65.87-1.39 1.11-2.19h1.11A1.746 1.746 0 0 0 23 13a1.746 1.746 0 0 0-3.18-1H19c0-1.57-.5-3-1.4-4.19l1.34-1.34c.11.03.21.03.31.03.45 0 .9-.17 1.25-.5.67-.69.67-1.8 0-2.5-.35-.33-.8-.5-1.25-.5s-.9.17-1.25.5c-.41.43-.57 1-.47 1.56L16.19 6.4c-.92-.69-2-1.15-3.19-1.32v-1.4A1.746 1.746 0 0 0 12 .5M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5m-1.5-8C9.67 9 9 9.67 9 10.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5S11.33 9 10.5 9m3.5 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1"/></svg>
+  
+  <span class="md-ellipsis">
+    Анализ вредоносного ПО
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyse_siem/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .89-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8.92 12.58L11.5 17l5-5-5-5-1.42 1.41L12.67 11H3v2h9.67z"/></svg>
+  
+  <span class="md-ellipsis">
+    Анализ логов SIEM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_sec/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m0 8h16a1 1 0 0 1 1 1v.67l-2.5-1.11-6.5 2.88V15H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1m0 8h8c.06 2.25 1 4.4 2.46 6H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1M8 5h1V3H8zm0 8h1v-2H8zm0 8h1v-2H8zM4 3v2h2V3zm0 8v2h2v-2zm0 8v2h2v-2zm13.5-7 4.5 2v3c0 2.78-1.92 5.37-4.5 6-2.58-.63-4.5-3.22-4.5-6v-3zm0 1.94L15 15.06v2.66c0 1.54 1.07 2.98 2.5 3.34z"/></svg>
+  
+  <span class="md-ellipsis">
+    Веб безопасность
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obshie/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 3C9.23 3 6.19 5.95 6 9.66l-1.92 2.53c-.24.31 0 .81.42.81H6v3c0 1.11.89 2 2 2h1v3h7v-4.69c2.37-1.12 4-3.51 4-6.31 0-3.86-3.12-7-7-7m1 11h-2v-2h2zm1.75-5.19c-.29.4-.66.69-1.11.93-.25.16-.42.33-.51.52-.09.18-.13.43-.13.74h-2c0-.5.11-.92.31-1.18.19-.27.54-.57 1.05-.91.26-.16.47-.36.61-.59.16-.23.23-.5.23-.82 0-.3-.08-.56-.26-.75-.18-.18-.44-.28-.75-.28a1 1 0 0 0-.66.23c-.18.16-.27.39-.28.69h-1.93l-.01-.03c-.01-.79.25-1.36.77-1.77.54-.39 1.24-.59 2.11-.59.93 0 1.66.23 2.19.68.54.45.81 1.06.81 1.82 0 .5-.15.91-.44 1.31"/></svg>
+  
+  <span class="md-ellipsis">
+    Общие вопросы
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polity_sec/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M71 12.5c-8.6 1-15 8.2-15 16.8 0 9.3 7.5 16.8 16.7 16.9h111.4c8.8-.1 15.9-7.2 15.9-16V16c0-9.5-8.3-17-17.8-15.9zm118.5 65.6H66.6C64.9 83.8 64 89.8 64 96c0 35.3 28.7 64 64 64s64-28.7 64-64c0-6.2-.9-12.2-2.5-17.9M32 256v32c0 17.7 14.3 32 32 32h128c1.8 0 3.5-.1 5.2-.4L53 208.6c-12.9 11.7-21 28.6-21 47.4m190.2 42.5c1.1-3.3 1.8-6.8 1.8-10.5v-32c0-35.3-28.7-64-64-64H96c-3.7 0-7.4.3-10.9.9zM384 160a64 64 0 1 0 0-128 64 64 0 1 0 0 128m-32 32c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zM215.8 450.1c5.2-4.6 8.2-11.1 8.2-18.1s-3-13.5-8.2-18.1l-64-56c-7.1-6.2-17.1-7.7-25.7-3.8S112 366.6 112 376v32H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h88v32c0 9.4 5.5 18 14.1 21.9s18.6 2.4 25.7-3.8zm72.2-18.2c0 6.9 2.9 13.5 8.1 18.1l64 56.4c7.1 6.2 17.1 7.8 25.7 3.9s14.1-12.4 14.1-21.9V456h88c13.3 0 24-10.7 24-24s-10.7-24-24-24h-88v-32c0-9.4-5.5-18-14.1-21.9s-18.6-2.4-25.7 3.8l-64 56c-5.2 4.5-8.2 11.1-8.2 18z"/></svg>
+  
+  <span class="md-ellipsis">
+    Политика безопасности
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pravo/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4.21c1.24.51 2.65.79 4 .79 1.05 0 2.1-.16 3.08-.46C18.5 5.5 18 6.71 18 8c0 1.32.54 2.93 1.1 4.63.4 1.2.9 2.7.9 3.37 0 1.03-3.53 3-8 3.96C7.54 19 4 17.03 4 16c0-.67.5-2.17.9-3.37C5.46 10.93 6 9.32 6 8c0-1.29-.5-2.5-1.08-3.46C5.9 4.84 6.96 5 8 5c1.35 0 2.76-.28 4-.79M20 2c-1.15.64-2.6 1-4 1s-2.86-.37-4-1c-1.14.63-2.6 1-4 1s-2.85-.36-4-1L2 4s2 2 2 4-2 6-2 8c0 4 10 6 10 6s10-2 10-6c0-2-2-6-2-8s2-4 2-4zm-4.95 14.45-3.08-1.86-3.07 1.86.82-3.5L7 10.61l3.58-.31L11.97 7l1.4 3.29 3.58.31-2.72 2.34z"/></svg>
+  
+  <span class="md-ellipsis">
+    Правовые вопросы
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+  
+  <span class="md-ellipsis">
+    Сетевая безопасность
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+  
+  <span class="md-ellipsis">
+    Сетевая безопасность
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-osi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 1. Модель OSI, объяснить каждый уровень.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 2. Трёхстороннее рукопожатие TCP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 3. Трёхстороннее рукопожатие TCP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-arp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 4. Протокол ARP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-arp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 5. Протокол ARP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 6. Как работает сканирование портов?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-man-in-the-middle-mitm" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 7. Как предотвратить Man-in-the-Middle (MitM) атаки?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-osi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 8. Роль сетевого уровня в модели OSI.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ids-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 9. Разница между IDS и IPS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-ids-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 10. Разница между IDS и IPS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-network-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 11. Сегментация сети (Network Segmentation) и её важность.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-man-in-the-middle-mitm" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 12. Как обнаружить и предотвратить атаку Man-in-the-Middle (MitM)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 13. Основные инструменты сетевой безопасности.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-dlp-edr-siem-ips-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 14. Разница между DLP, EDR, SIEM, IPS и IDS.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-honeypot" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 15. Honeypot – что это?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-golden-ticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 16. Как работает атака GOLDEN TICKET?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-tracert-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 17. Опиши использование tracert и traceroute.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 18. Какой номер порта использует утилита ping?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-tcp-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 19. В чем разница между TCP и UDP?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-subnetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 20. Цель и назначение субсеттинга (Subnetting).
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 21. Что такое утечка данных?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 22. Важность контроля доступа.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Конспекты
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Конспекты
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/ad_ldap_kerberos/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h132.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm64-16c-8.8 0-16 7.2-16 16v320c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7z"/></svg>
+  
+  <span class="md-ellipsis">
+    AD, LDAP, KERBEROS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/mitreattack/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033a3.3 3.3 0 0 1 1.117-1.024c.433-.245.936-.365 1.5-.365q.81.002 1.481.314c.448.208.785.582 1.02 1.108q.382-.562 1.034-.992.651-.43 1.546-.43.679 0 1.26.167c.388.11.716.286.993.53.276.245.489.559.646.951q.229.587.23 1.417v5.728h-2.349V11.52q0-.43-.032-.812a1.8 1.8 0 0 0-.18-.66 1.1 1.1 0 0 0-.438-.448q-.292-.165-.785-.166-.498 0-.803.189a1.4 1.4 0 0 0-.48.499 2 2 0 0 0-.231.696 5.6 5.6 0 0 0-.06.785v4.768h-2.35v-4.8q.002-.38-.018-.752a2.1 2.1 0 0 0-.143-.688 1.05 1.05 0 0 0-.415-.503c-.194-.125-.476-.19-.854-.19q-.168 0-.439.074c-.18.051-.36.143-.53.282a1.64 1.64 0 0 0-.439.595q-.18.39-.18 1.02v4.966H5.46V7.81zm15.693 15.64V.55H21.72V0H24v24h-2.28v-.55z"/></svg>
+  
+  <span class="md-ellipsis">
+    MITRE ATT&CK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/sobes_polety/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M192 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96m-8 384V352h16v128c0 17.7 14.3 32 32 32s32-14.3 32-32V192h136c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16V64h192v192H384v-32h-64v48c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H368c-26.5 0-48 21.5-48 48v80H177.2c-33.7 0-64.9 17.7-82.3 46.6l-58.3 97c-9.1 15.1-4.2 34.8 10.9 43.9s34.8 4.2 43.9-10.9l28.6-47.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32"/></svg>
+  
+  <span class="md-ellipsis">
+    Разбор полетов с собесов
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../study_res/res/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
+  
+  <span class="md-ellipsis">
+    Образовательные ресурсы
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-osi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 1. Модель OSI, объяснить каждый уровень.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 2. Трёхстороннее рукопожатие TCP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 3. Трёхстороннее рукопожатие TCP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-arp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 4. Протокол ARP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-arp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 5. Протокол ARP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 6. Как работает сканирование портов?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-man-in-the-middle-mitm" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 7. Как предотвратить Man-in-the-Middle (MitM) атаки?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-osi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 8. Роль сетевого уровня в модели OSI.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ids-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 9. Разница между IDS и IPS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-ids-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 10. Разница между IDS и IPS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-network-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 11. Сегментация сети (Network Segmentation) и её важность.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-man-in-the-middle-mitm" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 12. Как обнаружить и предотвратить атаку Man-in-the-Middle (MitM)?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 13. Основные инструменты сетевой безопасности.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-dlp-edr-siem-ips-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 14. Разница между DLP, EDR, SIEM, IPS и IDS.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-honeypot" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 15. Honeypot – что это?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-golden-ticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 16. Как работает атака GOLDEN TICKET?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-tracert-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 17. Опиши использование tracert и traceroute.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 18. Какой номер порта использует утилита ping?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-tcp-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 19. В чем разница между TCP и UDP?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-subnetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 20. Цель и назначение субсеттинга (Subnetting).
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 21. Что такое утечка данных?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 22. Важность контроля доступа.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Сетевая безопасность</h1>
+
+<h2 id="1-osi">🔹 1. Модель OSI, объяснить каждый уровень.</h2>
+<blockquote>
+<p>Модель OSI (Open Systems Interconnection) – это эталонная сетевая модель, разработанная Международной организацией по стандартизации (ISO) для обеспечения совместимости различных сетевых технологий. Она состоит из <strong>семи уровней</strong>, каждый из которых выполняет определенные функции в процессе передачи данных.</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>Физический уровень (Physical Layer)</strong></p>
+</li>
+<li>
+<p>Отвечает за передачу битов по физическому каналу связи (кабели, радиоволны, оптоволокно).</p>
+</li>
+<li>Определяет типы разъемов, напряжение, частоту сигналов и скорость передачи данных.</li>
+<li>
+<p>Устройства: сетевые адаптеры, хабы, повторители.</p>
+</li>
+<li>
+<p><strong>Канальный уровень (Data Link Layer)</strong></p>
+</li>
+<li>
+<p>Обеспечивает надежную передачу данных между узлами одной сети.</p>
+</li>
+<li>Делит данные на кадры (frames), контролирует ошибки, управляет доступом к среде передачи.</li>
+<li>MAC-адреса идентифицируют устройства на этом уровне.</li>
+<li>
+<p>Устройства: коммутаторы (switches), мосты (bridges).</p>
+</li>
+<li>
+<p><strong>Сетевой уровень (Network Layer)</strong></p>
+</li>
+<li>
+<p>Отвечает за логическую адресацию и маршрутизацию данных между разными сетями.</p>
+</li>
+<li>Использует IP-адреса и маршрутизаторы для определения наилучшего пути передачи пакетов.</li>
+<li>Примеры протоколов: <strong>IP, ICMP, RIP, OSPF</strong>.</li>
+<li>
+<p>Устройства: маршрутизаторы (routers).</p>
+</li>
+<li>
+<p><strong>Транспортный уровень (Transport Layer)</strong></p>
+</li>
+<li>
+<p>Обеспечивает надежную передачу данных между узлами.</p>
+</li>
+<li>Использует механизмы управления потоком и обнаружения ошибок.</li>
+<li>Два основных протокола:<ul>
+<li><strong>TCP</strong> (надежный, с установлением соединения).</li>
+<li><strong>UDP</strong> (быстрый, но без гарантий доставки).</li>
+</ul>
+</li>
+<li>
+<p>Отвечает за сегментацию данных.</p>
+</li>
+<li>
+<p><strong>Сеансовый уровень (Session Layer)</strong></p>
+</li>
+<li>
+<p>Управляет установкой, поддержанием и завершением сеансов связи между приложениями.</p>
+</li>
+<li>Позволяет нескольким приложениям на одном устройстве обмениваться данными одновременно.</li>
+<li>
+<p>Примеры: <strong>RPC (Remote Procedure Call), NetBIOS</strong>.</p>
+</li>
+<li>
+<p><strong>Уровень представления (Presentation Layer)</strong></p>
+</li>
+<li>
+<p>Отвечает за преобразование данных в нужный формат (шифрование, сжатие, кодировка).</p>
+</li>
+<li>
+<p>Примеры: <strong>SSL/TLS (шифрование), JPEG, GIF, ASCII</strong>.</p>
+</li>
+<li>
+<p><strong>Прикладной уровень (Application Layer)</strong></p>
+</li>
+<li>
+<p>Определяет способы взаимодействия пользователя с сетью через приложения.</p>
+</li>
+<li>Протоколы: <strong>HTTP, FTP, SMTP, DNS, POP3</strong>.</li>
+<li>Устройства: конечные устройства (ПК, серверы).</li>
+</ol>
+<h2 id="2-tcp">🔹 2. Трёхстороннее рукопожатие TCP.</h2>
+<blockquote>
+<p><strong>Трёхстороннее рукопожатие</strong> — это процесс установления соединения в протоколе <strong>TCP (Transmission Control Protocol)</strong> перед началом передачи данных. Этот механизм гарантирует надежное и двустороннее соединение между клиентом и сервером.</p>
+</blockquote>
+<p>Процесс включает три этапа:
+ <strong>1. Первый шаг: SYN (Синхронизация)</strong></p>
+<ul>
+<li>Клиент отправляет серверу <strong>SYN (synchronize)</strong>-пакет, который содержит начальный <strong>порядковый номер (Sequence Number)</strong>.</li>
+<li>
+<p>Этот шаг сообщает серверу, что клиент хочет установить соединение.
+ <strong>2. Второй шаг: SYN-ACK (Подтверждение синхронизации)</strong></p>
+</li>
+<li>
+<p>Сервер получает <strong>SYN</strong>-пакет от клиента и отвечает <strong>SYN-ACK</strong>-пакетом.</p>
+</li>
+<li>В этом пакете сервер:<ul>
+<li>Подтверждает получение <strong>SYN</strong> клиента (ACK).</li>
+<li>Отправляет свой собственный <strong>SYN</strong>, указывая начальный порядковый номер для своих данных.</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. Третий шаг: ACK (Подтверждение)</strong></p>
+<ul>
+<li>Клиент получает <strong>SYN-ACK</strong> от сервера и отправляет <strong>ACK (Acknowledgment)</strong>.</li>
+<li>Это означает, что соединение установлено и стороны могут обмениваться данными.</li>
+</ul>
+<h2 id="3-tcp">🔹 3. Трёхстороннее рукопожатие TCP.</h2>
+<blockquote>
+<p><strong>Модель TCP/IP</strong> (Transmission Control Protocol/Internet Protocol) — это сетевая модель, разработанная для передачи данных в Интернете и компьютерных сетях. В отличие от <strong>модели OSI</strong> с <strong>7 уровнями</strong>, TCP/IP состоит из <strong>4 уровней</strong>, которые более приближены к реальной работе сетей.</p>
+</blockquote>
+<p><strong>1. Прикладной уровень (Application Layer)</strong></p>
+<ul>
+<li>Объединяет три верхних уровня OSI (<strong>Прикладной, Представления и Сеансовый</strong>).</li>
+<li>Определяет взаимодействие между пользователем и сетью.</li>
+<li>Использует <strong>протоколы прикладного уровня</strong>, такие как:<ul>
+<li><strong>HTTP/HTTPS</strong> (веб-страницы)</li>
+<li><strong>FTP</strong> (передача файлов)</li>
+<li><strong>SMTP/POP3/IMAP</strong> (электронная почта)</li>
+<li><strong>DNS</strong> (разрешение имен в IP-адреса)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><strong>2. Транспортный уровень (Transport Layer)</strong></p>
+<ul>
+<li>Обеспечивает надежную передачу данных между узлами.</li>
+<li>Использует два ключевых протокола:<ul>
+<li><strong>TCP (Transmission Control Protocol)</strong> – надежная передача данных, трехстороннее рукопожатие, контроль потока.</li>
+<li><strong>UDP (User Datagram Protocol)</strong> – быстрая передача без подтверждений (например, для потокового видео, VoIP, онлайн-игр).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><strong>3. Интернет-уровень (Internet Layer)</strong></p>
+<ul>
+<li>Отвечает за логическую адресацию и маршрутизацию пакетов между сетями.</li>
+<li>Основные протоколы:<ul>
+<li><strong>IP (Internet Protocol)</strong> – адресация и маршрутизация.</li>
+<li><strong>ICMP (Internet Control Message Protocol)</strong> – диагностика сети (например, <code>ping</code>).</li>
+<li><strong>ARP (Address Resolution Protocol)</strong> – преобразование IP-адресов в MAC-адреса.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><strong>4. Канальный (сетевой) уровень (Link Layer / Network Access Layer)</strong></p>
+<ul>
+<li>Включает функции физического и канального уровней модели OSI.</li>
+<li>Отвечает за передачу битов через физическую среду (кабели, Wi-Fi, оптоволокно).</li>
+<li>Работает с <strong>MAC-адресами</strong> и управляет доступом к среде передачи.</li>
+<li>Устройства: <strong>коммутаторы (Switch), сетевые карты (NIC), Wi-Fi адаптеры</strong>.</li>
+</ul>
+<h2 id="4-arp">🔹 4. Протокол ARP.</h2>
+<blockquote>
+<p><strong>ARP (Address Resolution Protocol)</strong> – это сетевой протокол, используемый для определения MAC-адреса устройства по его IP-адресу в локальной сети (LAN). Он необходим для передачи данных между устройствами в одной сети.</p>
+</blockquote>
+<p><strong>Как работает ARP?</strong></p>
+<ol>
+<li><strong>Когда компьютер хочет отправить данные по IP-адресу в локальной сети, он должен узнать MAC-адрес получателя.</strong></li>
+<li>Если MAC-адрес неизвестен, отправитель отправляет <strong>ARP-запрос</strong> (Broadcast), запрашивая MAC-адрес для данного IP.</li>
+<li>Устройство с этим IP-адресом отвечает <strong>ARP-ответом</strong> (Unicast), отправляя свой MAC-адрес.</li>
+<li>
+<p>MAC-адрес кэшируется в <strong>ARP-таблице</strong> отправителя для дальнейшего использования.
+ <strong>Проблемы ARP и атаки</strong></p>
+</li>
+<li>
+<p><strong>ARP Spoofing (Подмена ARP)</strong> – злоумышленник отправляет поддельные ARP-ответы, чтобы перенаправить трафик через себя (MITM-атака).</p>
+</li>
+<li><strong>ARP Flooding (Перегрузка ARP)</strong> – наполнение ARP-таблицы поддельными записями, вызывая перегрузку сети.</li>
+</ol>
+<h2 id="5-arp">🔹 5. Протокол ARP.</h2>
+<blockquote>
+<p><strong>DHCP (Dynamic Host Configuration Protocol)</strong> – это сетевой протокол, который автоматически назначает IP-адреса, шлюзы, маски подсети и другие сетевые параметры устройствам в сети.</p>
+</blockquote>
+<hr />
+<p><strong>Как работает DHCP? (4 этапа DORA)</strong></p>
+<p>При подключении устройства к сети <strong>DHCP-сервер</strong> автоматически назначает ему IP-адрес в процессе, состоящем из <strong>четырех шагов (DORA):</strong></p>
+<ol>
+<li><strong>Discover (Обнаружение)</strong> - Клиент (устройство) отправляет <strong>широковещательный запрос (Broadcast)</strong>, чтобы найти DHCP-сервер.</li>
+<li><strong>Offer (Предложение)</strong> - DHCP-сервер отвечает, предлагая <strong>свободный IP-адрес</strong> и параметры сети.</li>
+<li><strong>Request (Запрос)</strong> - Клиент выбирает IP-адрес из предложенных и отправляет <strong>запрос на подтверждение</strong>.</li>
+<li><strong>Acknowledge (Подтверждение)</strong> - DHCP-сервер подтверждает выделение IP-адреса, и клиент получает его.</li>
+</ol>
+<p>После этого устройство может использовать назначенный IP-адрес.</p>
+<h2 id="6">🔹 6. Как работает сканирование портов?</h2>
+<blockquote>
+<p><strong>Port Scanning (сканирование портов)</strong> — это метод анализа сети, используемый для выявления открытых портов на целевом устройстве (сервере, компьютере, маршрутизаторе) и определения работающих служб.</p>
+</blockquote>
+<hr />
+<p><strong>Как работает сканирование портов?</strong></p>
+<p>Каждое сетевое устройство использует <strong>порты</strong> для связи через различные протоколы (TCP/UDP).</p>
+<ul>
+<li><strong>Открытый порт</strong> – принимает соединения и отвечает.</li>
+<li><strong>Закрытый порт</strong> – отклоняет соединения.</li>
+<li><strong>Фильтрованный порт</strong> – защищен брандмауэром и не отвечает.</li>
+</ul>
+<p>Сканирование портов отправляет запросы на целевые порты и анализирует их ответы, чтобы определить, какие службы запущены.</p>
+<h2 id="7-man-in-the-middle-mitm">🔹 7. Как предотвратить Man-in-the-Middle (MitM) атаки?</h2>
+<blockquote>
+<p><strong>Man-in-the-Middle (MitM) атака</strong> — это вид кибератаки, при которой злоумышленник перехватывает и/или изменяет передаваемые данные между двумя сторонами, оставаясь незамеченным.</p>
+</blockquote>
+<p>Как предотвратить?</p>
+<p>✅ <strong>TLS/SSL (HTTPS вместо HTTP)</strong></p>
+<ul>
+<li>Всегда используйте <strong>HTTPS</strong> для веб-сайтов, чтобы данные были зашифрованы.</li>
+<li>Проверяйте сертификаты SSL (<code>lock</code>-значок в адресной строке).</li>
+</ul>
+<p>✅ <strong>VPN (Virtual Private Network)</strong></p>
+<ul>
+<li>Шифрует весь интернет-трафик, защищая от перехвата в публичных сетях.</li>
+<li>Используйте <strong>надежные VPN</strong> (например, WireGuard, OpenVPN).</li>
+</ul>
+<p>✅ <strong>Избегайте публичных Wi-Fi-сетей</strong></p>
+<ul>
+<li>Если используете, <strong>подключайтесь через VPN</strong>.</li>
+<li>Не вводите пароли и данные карт в открытых сетях.</li>
+</ul>
+<p>✅ <strong>Используйте ARP-защиту</strong></p>
+<ul>
+<li><strong>DHCP Snooping</strong> и <strong>Dynamic ARP Inspection (DAI)</strong> на сетевых устройствах предотвращают ARP-спуфинг.</li>
+</ul>
+<h2 id="8-osi">🔹 8. Роль сетевого уровня в модели OSI.</h2>
+<blockquote>
+<p><strong>Сетевой уровень (Network Layer, 3-й уровень модели OSI)</strong> отвечает за <strong>маршрутизацию, логическую адресацию и передачу пакетов данных</strong> между различными сетями. Он играет ключевую роль в обеспечении связи между устройствами, находящимися в разных сетях.</p>
+</blockquote>
+<p><strong>Основные функции сетевого уровня</strong></p>
+<p><strong>1. Логическая адресация (IP-адресация)</strong></p>
+<ul>
+<li>Назначает каждому устройству <strong>уникальный IP-адрес</strong>.</li>
+<li>Использует <strong>IPv4 (например, 192.168.1.1)</strong> и <strong>IPv6 (например, 2001:db8::ff00:42:8329)</strong>.</li>
+<li>Позволяет устройствам находить друг друга в сети.</li>
+</ul>
+<p><strong>2. Маршрутизация (Routing)</strong></p>
+<ul>
+<li>Определяет <strong>лучший путь</strong> для передачи пакетов от источника к получателю.</li>
+<li>Использует <strong>протоколы маршрутизации</strong>, такие как:<ul>
+<li><strong>RIP (Routing Information Protocol)</strong></li>
+<li><strong>OSPF (Open Shortest Path First)</strong></li>
+<li><strong>BGP (Border Gateway Protocol)</strong></li>
+</ul>
+</li>
+<li>Устройства, работающие на сетевом уровне: <strong>маршрутизаторы (Routers)</strong>.</li>
+</ul>
+<p><strong>3. Передача пакетов (Packet Forwarding)</strong></p>
+<ul>
+<li>Разбивает данные на <strong>пакеты</strong> и передает их через сеть.</li>
+<li>Определяет, <strong>какой маршрут</strong> использовать, чтобы доставить пакет к получателю.</li>
+<li>Использует <strong>таблицы маршрутизации</strong> для выбора следующего узла (next hop).</li>
+</ul>
+<p><strong>4. Фрагментация и сборка пакетов</strong></p>
+<ul>
+<li>Если пакет <strong>слишком большой</strong> для передачи через сеть, он <strong>разбивается (фрагментируется)</strong>.</li>
+<li>На стороне получателя пакеты <strong>собираются обратно</strong> в исходные данные.</li>
+<li>Особенно важно для сетей с разными <strong>MTU (Maximum Transmission Unit)</strong>.</li>
+</ul>
+<p><strong>5. Диагностика и обработка ошибок</strong></p>
+<ul>
+<li>Использует <strong>ICMP (Internet Control Message Protocol)</strong> для диагностики проблем в сети.</li>
+<li>Примеры:<ul>
+<li><strong>ping</strong> – проверка доступности хоста.</li>
+<li><strong>traceroute (tracert)</strong> – определение маршрута пакета через сеть.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-ids-ips">🔹 9. Разница между IDS и IPS?</h2>
+<p><strong>Что такое IDS (Intrusion Detection System)?</strong></p>
+<p>✅ <strong>Система обнаружения вторжений</strong> (IDS) анализирует сетевой трафик и события в реальном времени, чтобы <strong>обнаружить подозрительную активность</strong>.<br />
+🚫 <strong>Не блокирует атаки</strong>, а только уведомляет администратора.</p>
+<p>🔹 <strong>Как работает IDS?</strong>
+- Сравнивает сетевой трафик с базой <strong>известных атак (сигнатуры)</strong>.
+- Использует <strong>анализ аномалий</strong>, выявляя подозрительное поведение.
+- При обнаружении угрозы отправляет <strong>уведомление (логирование, оповещение по e-mail, SNMP-трап)</strong>.</p>
+<p>🔹 <strong>Виды IDS:</strong>
+- <strong>NIDS (Network-based IDS)</strong> – анализирует весь сетевой трафик.
+- <strong>HIDS (Host-based IDS)</strong> – работает на отдельном устройстве (сервере, ПК).</p>
+<p><strong>Что такое IPS (Intrusion Prevention System)?</strong></p>
+<p>✅ <strong>Система предотвращения вторжений</strong> (IPS) выполняет те же функции, что и IDS, но <strong>активно блокирует атаки</strong>.<br />
+🚫 Может вызывать ложные срабатывания и блокировать легитимный трафик.</p>
+<p>🔹 <strong>Как работает IPS?</strong>
+- Анализирует входящий трафик, как IDS.
+- При обнаружении угрозы <strong>блокирует</strong> трафик или <strong>разрывает соединение</strong>.
+- Может автоматически обновлять <strong>правила защиты</strong> для противодействия новым атакам.</p>
+<p>🔹 <strong>Размещение IPS:</strong>
+- Обычно работает <strong>между маршрутизатором и внутренней сетью</strong>, перехватывая весь трафик.</p>
+<p>Почему бы не использовать только IPS?</p>
+<p>✅ <strong>IDS анализирует трафик, но не блокирует его</strong>, поэтому <strong>не мешает нормальной работе сети</strong>.<br />
+🚫 <strong>IPS может ошибочно блокировать легитимные соединения</strong>, вызывая сбои в работе критических сервисов.</p>
+<p>✅ IDS не только фиксирует угрозы, но и <strong>сохраняет детальную информацию о них</strong>.<br />
+🚫 IPS обычно <strong>не сохраняет детальные логи</strong> – он блокирует трафик и двигается дальше.</p>
+<h2 id="10-ids-ips">🔹 10. Разница между IDS и IPS?</h2>
+<blockquote>
+<p><strong>IDS (Intrusion Detection System)</strong> – система обнаружения вторжений, которая отслеживает подозрительную активность в сети или на конкретных хостах. Она бывает двух основных видов:</p>
+</blockquote>
+<ul>
+<li><strong>HIDS (Host-based IDS)</strong> – базируется на отдельных устройствах (хостах).</li>
+<li><strong>NIDS (Network-based IDS)</strong> – контролирует весь сетевой трафик.</li>
+</ul>
+<p><strong>Что такое HIDS (Host-based Intrusion Detection System)?</strong></p>
+<p>✅ Устанавливается <strong>на конкретном устройстве (сервер, ПК, ноутбук, облачный сервер)</strong>.<br />
+✅ Анализирует <strong>файлы, логи, процессы, системные вызовы</strong>.<br />
+✅ Может выявлять <strong>изменения в файлах, вредоносную активность внутри ОС</strong>.</p>
+<p>🔹 <strong>Как работает HIDS?</strong></p>
+<ul>
+<li>Контролирует <strong>журналы событий (event logs)</strong>.</li>
+<li>Анализирует <strong>изменения в файловой системе</strong>.</li>
+<li>Выявляет <strong>подозрительные процессы и неизвестные программы</strong>.</li>
+<li>Может обнаруживать <strong>rootkits, трояны, изменения конфигурации</strong>.</li>
+</ul>
+<p><strong>Что такое NIDS (Network-based Intrusion Detection System)?</strong></p>
+<p>✅ Анализирует <strong>весь сетевой трафик</strong> на уровне маршрутизатора или коммутатора.<br />
+✅ Позволяет обнаруживать <strong>сканирование портов, атаки DDoS, попытки эксплуатации уязвимостей</strong>.<br />
+✅ Может работать в режиме <strong>реального времени</strong> для выявления сетевых атак.</p>
+<p>🔹 <strong>Как работает NIDS?</strong></p>
+<ul>
+<li>Захватывает сетевой трафик и анализирует <strong>пакеты данных</strong>.</li>
+<li>Использует <strong>сигнатуры атак</strong> (например, SQL-инъекции, DoS-атаки).</li>
+<li>Может выявлять <strong>аномалии в трафике</strong> (необычно высокая активность).</li>
+</ul>
+<p><strong>Когда использовать HIDS, а когда NIDS?</strong></p>
+<p>🔹 <strong>Использовать HIDS, если:</strong><br />
+✔️ Нужно отслеживать <strong>активность на конкретных устройствах</strong>.<br />
+✔️ Требуется защита <strong>критически важных серверов</strong>.<br />
+✔️ Нужно обнаруживать <strong>изменения файлов и атакующих внутри системы</strong>.</p>
+<p>🔹 <strong>Использовать NIDS, если:</strong><br />
+✔️ Нужно <strong>мониторить весь сетевой трафик</strong>.<br />
+✔️ Требуется защита от <strong>сетевых атак (DDoS, сканирование, эксплойты)</strong>.<br />
+✔️ Нужно <strong>обнаруживать атаки на ранней стадии</strong>, до проникновения в систему.</p>
+<h2 id="11-network-segmentation">🔹 11. Сегментация сети (Network Segmentation) и её важность.</h2>
+<blockquote>
+<p><strong>Сегментация сети</strong> – это процесс разделения сети на <strong>логические или физические сегменты</strong> для повышения безопасности, производительности и управляемости. Вместо единой большой сети создаются <strong>изолированные зоны</strong>, каждая из которых выполняет определённые функции и имеет ограниченный доступ к другим зонам.</p>
+</blockquote>
+<p><strong>Виды сетевой сегментации</strong></p>
+<p><strong>1. Физическая сегментация</strong></p>
+<p>✅ Разделение сети с помощью <strong>разных коммутаторов, маршрутизаторов и кабелей</strong>.<br />
+✅ Полная изоляция сегментов, что делает атаки сложнее.</p>
+<p><strong>2. Логическая сегментация (VLAN)</strong></p>
+<p>✅ Разделение сети с использованием <strong>виртуальных локальных сетей (VLAN)</strong>.<br />
+✅ Устройства могут быть в разных сегментах, даже если они физически подключены к одному коммутатору.</p>
+<p><strong>3. Сегментация на основе брандмауэров (Firewall Segmentation)</strong></p>
+<p>✅ Использование <strong>межсетевых экранов (firewalls)</strong> для фильтрации трафика между сегментами.<br />
+✅ Позволяет задавать <strong>политику доступа</strong> (например, пользователи не могут напрямую подключаться к серверам).</p>
+<h2 id="12-man-in-the-middle-mitm">🔹 12. Как обнаружить и предотвратить атаку Man-in-the-Middle (MitM)?</h2>
+<blockquote>
+<p><strong>Man-in-the-Middle (MitM)</strong> – это атака, при которой злоумышленник перехватывает и/или изменяет трафик между жертвой и сервером. Атака может быть использована для кражи данных, подмены сообщений и внедрения вредоносного кода.</p>
+</blockquote>
+<p><strong>Как обнаружить MitM-атаку?</strong> 🔎</p>
+<p><strong>1. Подозрительные сертификаты HTTPS</strong></p>
+<p>✅ Проверяйте <strong>SSL/TLS-сертификаты</strong> сайтов. Если браузер выдаёт предупреждение о сертификате (<strong>"Your connection is not private"</strong>), возможно, идёт атака MitM.</p>
+<p><strong>2. Аномалии в сетевом трафике</strong></p>
+<p>✅ Используйте <strong>анализаторы трафика</strong> для выявления подозрительной активности.</p>
+<p>🔹 <strong>Признаки атаки MitM:</strong>
+- Подозрительные <strong>MAC-адреса</strong> на одном IP (ARP Spoofing).
+- Подмена <strong>DNS-запросов</strong>.
+- Неожиданные SSL/TLS-предупреждения.
+ <strong>3. Изменение ARP-таблицы (ARP Spoofing)</strong></p>
+<p>✅ Если у двух IP-адресов одинаковый MAC-адрес – это признак атаки.</p>
+<p><strong>4. Фальшивые DNS-записи (DNS Spoofing)</strong></p>
+<p>✅ Если сайт, на который вы заходите, ведёт на неожиданный IP-адрес – это может быть DNS-атака.</p>
+<p><strong>2. Как предотвратить атаку MitM?</strong> 🔐</p>
+<p>✅ <strong>Всегда используйте HTTPS</strong> вместо HTTP.<br />
+✅ <strong>Обновляйте TLS-версии</strong> на серверах и клиентах (<strong>минимум TLS 1.2, лучше TLS 1.3</strong>).<br />
+✅ <strong>VPN (Virtual Private Network)</strong> защищает данные в публичных сетях.</p>
+<p>✅Плюс соответственно проверка arp таблиц, dns записей и сертификатов.
+✅Подключение двухфакторной аутентификации.</p>
+<h2 id="13">🔹 13. Основные инструменты сетевой безопасности.</h2>
+<p>Обнаружение и предотвращение атак:
+🔹 <strong>IDS (Intrusion Detection System)</strong> – система обнаружения вторжений (мониторинг и уведомления).<br />
+🔹 <strong>IPS (Intrusion Prevention System)</strong> – система предотвращения вторжений (автоматическая блокировка угроз).</p>
+<p>Сканеры уязвимостей:
+🔹 <strong>Всякие nmap, metasploit, nessus</strong> – для тестирования защиты и поиска уязвимостей в сети.</p>
+<p>Анализаторы сетевого трафика:
+🔹 Wireshark, tcpdump, pingcastle – диагностика сети.</p>
+<p>Мониторинг системы:
+🔹SIEM, IPS,IDS, DLP</p>
+<h2 id="14-dlp-edr-siem-ips-ids">🔹 14. Разница между DLP, EDR, SIEM, IPS и IDS.</h2>
+<ol>
+<li>DLP (Data Loss Prevention) – Защита от утечек данных</li>
+</ol>
+<p>✅ <strong>Что делает?</strong></p>
+<ul>
+<li>Контролирует <strong>отправку конфиденциальных данных</strong> (файлы, письма, сообщения).</li>
+<li>Запрещает копирование данных на <strong>USB, облака, email, мессенджеры</strong>.</li>
+<li>
+<p>Определяет <strong>чувствительную информацию</strong> (номера карт, пароли, документы).</p>
+</li>
+<li>
+<p>EDR (Endpoint Detection and Response) – Обнаружение и реагирование на угрозы на конечных точках</p>
+</li>
+</ul>
+<p>✅ <strong>Что делает?</strong></p>
+<ul>
+<li>Следит за активностью на <strong>ПК, серверах, ноутбуках</strong>.</li>
+<li>Выявляет <strong>вредоносное ПО, аномалии</strong>, подозрительные процессы.</li>
+<li>
+<p>Автоматически <strong>изолирует заражённые устройства</strong> и собирает логи для расследования.</p>
+</li>
+<li>
+<p>SIEM (Security Information and Event Management) – Централизованный анализ событий безопасности</p>
+</li>
+</ul>
+<p>✅ <strong>Что делает?</strong></p>
+<ul>
+<li><strong>Собирает логи</strong> со всех систем (серверов, брандмауэров, EDR, IPS, IDS).</li>
+<li>Анализирует <strong>аномалии, подозрительные действия, попытки атак</strong>.</li>
+<li>
+<p>Помогает в <strong>расследовании инцидентов</strong> и генерации отчетов.</p>
+</li>
+<li>
+<p>IDS (Intrusion Detection System) – Система обнаружения вторжений</p>
+</li>
+</ul>
+<p>✅ <strong>Что делает?</strong></p>
+<ul>
+<li><strong>Мониторит сетевой трафик</strong> и ищет атаки.</li>
+<li><strong>Не блокирует атаки</strong>, а только уведомляет.</li>
+<li>
+<p>Может анализировать <strong>аномалии или сигнатуры атак</strong>.</p>
+</li>
+<li>
+<p>IPS (Intrusion Prevention System) – Система предотвращения вторжений**</p>
+</li>
+</ul>
+<p>✅ <strong>Что делает?</strong></p>
+<ul>
+<li>Работает <strong>как IDS</strong>, но <strong>автоматически блокирует</strong> атаки.</li>
+<li>Защищает от <strong>DDoS, эксплойтов, сканирования портов</strong>.</li>
+<li>Фильтрует трафик в режиме реального времени.</li>
+</ul>
+<p>ЕСЛИ ОЧЕНЬ КРАТКО:
+📌 <strong>DLP</strong> защищает данные от утечек.<br />
+📌 <strong>EDR</strong> выявляет и реагирует на атаки на конечных точках.<br />
+📌 <strong>SIEM</strong> анализирует логи и помогает расследовать инциденты.<br />
+📌 <strong>IDS</strong> обнаруживает атаки, но не блокирует их.<br />
+📌 <strong>IPS</strong> предотвращает атаки автоматически.</p>
+<h2 id="15-honeypot">🔹 15. Honeypot – что это?</h2>
+<blockquote>
+<p><strong>Honeypot (медовая ловушка)</strong> – это <strong>ловушка для хакеров</strong>, представляющая собой <strong>намеренно уязвимую систему</strong>, созданную для <strong>привлечения злоумышленников</strong>, отслеживания их активности и изучения их методов атак. Этот метод помогает <strong>обнаруживать и анализировать угрозы</strong>, не подвергая риску реальные системы.</p>
+</blockquote>
+<p><strong>Как работает Honeypot?</strong></p>
+<p>🔹 Создаётся <strong>фальшивая система</strong> (сервер, сайт, база данных) с <strong>привлекательными "уязвимостями"</strong>. Хакер атакует Honeypot, думая, что это настоящая цель. Ловушка <strong>записывает действия атакующего</strong>:
+- Какие уязвимости он использует
+- Как он ведёт себя внутри системы
+- Какие инструменты применяет  </p>
+<p>📌Администраторы <strong>анализируют атаку</strong> и используют эти данные для <strong>улучшения безопасности</strong> реальной инфраструктуры.</p>
+<h2 id="16-golden-ticket">🔹 16. Как работает атака GOLDEN TICKET?</h2>
+<p><strong>Golden Ticket Attack (Атака «Золотой билет»)</strong> – это <strong>атака на Kerberos</strong>, при которой злоумышленник получает <strong>полный контроль</strong> над доменом Active Directory (AD), подделывая Kerberos Ticket Granting Ticket (<strong>TGT</strong>).</p>
+<p>Этот тип атаки <strong>опасен, так как позволяет хакеру создать "бесконечные" билеты Kerberos</strong> и получить доступ ко всей сети <strong>без ввода паролей и двухфакторной аутентификации</strong>.</p>
+<p><strong>Как работает атака Golden Ticket?</strong></p>
+<p><strong>Шаги атаки:</strong></p>
+<p>1) <strong>Компрометация контроллера домена (DC)</strong></p>
+<ul>
+<li>Хакер получает доступ к <strong>NTLM-хэшу</strong> учетной записи <strong>krbtgt</strong> (служебная учётная запись, подписывающая билеты Kerberos).</li>
+<li>Это можно сделать через <strong>Mimikatz</strong>, Pass-the-Hash или другие методы.</li>
+</ul>
+<p>2) Создание поддельного TGT (Golden Ticket)**</p>
+<ul>
+<li>Используя украденный хеш krbtgt, злоумышленник <strong>создаёт поддельный Kerberos-билет</strong>.</li>
+<li>Этот билет позволяет <strong>входить в любую систему домена</strong>.</li>
+</ul>
+<p>3) <strong>Долгосрочный доступ к домену</strong></p>
+<ul>
+<li>Злоумышленник может выдавать себя за <strong>любого пользователя</strong>, включая администратора.</li>
+<li>Билет можно сделать <strong>бессрочным</strong>, что позволяет входить в систему даже после смены паролей.</li>
+</ul>
+<h2 id="17-tracert-traceroute">🔹 17. Опиши использование tracert и traceroute.</h2>
+<blockquote>
+<p><code>tracert</code> (в Windows) и <code>traceroute</code> (в Linux и macOS) — это сетевые утилиты, используемые для отслеживания маршрута пакетов от исходного устройства до конечного узла (целевого сервера).</p>
+</blockquote>
+<p>Основное назначение:</p>
+<ol>
+<li><strong>Определение маршрута</strong> – показывает все промежуточные узлы (маршрутизаторы), через которые проходит пакет.</li>
+<li><strong>Диагностика задержек</strong> – на каждом узле отображается время отклика, что позволяет выявлять задержки в сети.</li>
+<li><strong>Поиск проблем</strong> – помогает определить, где возникают потери пакетов или высокие задержки.</li>
+</ol>
+<p>Как работает?</p>
+<p>📌Утилита отправляет последовательность пакетов с увеличивающимся значением TTL (Time-To-Live). Каждый маршрутизатор на пути уменьшает TTL и, когда оно достигает нуля, отправляет сообщение об ошибке обратно. Это позволяет узнать IP-адреса всех узлов на пути к цели.</p>
+<h2 id="18-ping">🔹 18. Какой номер порта использует утилита ping?</h2>
+<p><code>Ping</code> <strong>не использует</strong> какой-либо конкретный номер порта, так как он работает на уровне ICMP (Internet Control Message Protocol).</p>
+<blockquote>
+<p>ICMP – это протокол сетевого уровня (Layer 3 OSI), и он <strong>не использует порты</strong>, поскольку порты принадлежат транспортному уровню (Layer 4 OSI, такие как TCP и UDP).</p>
+</blockquote>
+<p>Когда выполняется команда <code>ping</code>, отправляются <strong>ICMP Echo Request</strong> пакеты, а целевой узел отвечает <strong>ICMP Echo Reply</strong>.</p>
+<p>📌При использовании <code>ping</code> мы <strong>не обращаемся к какому-то конкретному сервису</strong>, а просто отправляем ICMP-запрос (<code>Echo Request</code>) на указанный IP-адрес или домен. <strong>Этот пакет принимается сетевым стеком целевого устройства, а не каким-то конкретным приложением или службой, работающей на определённом порту.</strong></p>
+<h2 id="19-tcp-udp">🔹 19. В чем разница между TCP и UDP?</h2>
+<p>🔹 <strong>TCP (Протокол управления передачей)</strong></p>
+<p>✅ <strong>Надёжность</strong> – обеспечивает доставку данных без потерь.<br />
+✅ <strong>Контроль порядка</strong> – пакеты приходят в той же последовательности, в которой были отправлены.<br />
+✅ <strong>Механизм подтверждения (ACK)</strong> – отправитель ждёт подтверждение получения данных.<br />
+✅ <strong>Использует установку соединения</strong> – перед передачей данных устанавливается соединение (тройное рукопожатие).<br />
+✅ <strong>Медленнее, но стабильнее</strong> – из-за дополнительных проверок.<br />
+📌 <strong>Используется в:</strong> HTTP/HTTPS (веб-сайты), FTP (файлы), SSH (удалённый доступ), Email (SMTP, IMAP, POP3).</p>
+<p>🔹 <strong>UDP (Протокол пользовательских датаграмм)</strong></p>
+<p>⚡ <strong>Быстрее TCP</strong>, так как нет подтверждений доставки.<br />
+⚡ <strong>Нет контроля порядка</strong> – пакеты могут приходить вразнобой.<br />
+⚡ <strong>Нет гарантии доставки</strong> – пакеты могут теряться в пути.<br />
+⚡ <strong>Не требует установки соединения</strong> – просто отправляет данные.<br />
+📌 <strong>Используется в:</strong> VoIP (звонки), видеостриминг, онлайн-игры, DNS-запросы, DHCP.</p>
+<h2 id="20-subnetting">🔹 20. Цель и назначение субсеттинга (Subnetting).</h2>
+<blockquote>
+<p><strong>Субсеттинг</strong> (разделение на подсети) — это процесс разбиения одной большой сети на несколько меньших подсетей (subnet). Это улучшает управление сетью, повышает безопасность и оптимизирует использование IP-адресов.</p>
+</blockquote>
+<p>🔹 <strong>Основные цели субсеттинга:</strong></p>
+<p>1)<strong>Эффективное использование IP-адресов</strong>
+- Позволяет избежать потерь адресов, особенно в IPv4, где адреса ограничены.
+- Разделяет сеть на меньшие части, чтобы не выделять больше адресов, чем нужно.</p>
+<p>2)<strong>Снижение сетевой нагрузки</strong>
+- Разграничивает трафик внутри подсетей, уменьшая коллизии и широковещательный трафик (broadcast).</p>
+<p>3)<strong>Увеличение безопасности</strong>
+- Разделение сети на подсети помогает изолировать чувствительные сегменты от остальной сети.</p>
+<p>4)<strong>Упрощение администрирования</strong>
+- Позволяет группировать устройства по отделам (например, бухгалтерия, IT, маркетинг).
+- Легче контролировать доступ и применять политики безопасности.</p>
+<h2 id="21">🔹 21. Что такое утечка данных?</h2>
+<blockquote>
+<p><strong>Утечка данных</strong> – это несанкционированное раскрытие, передача или утрата конфиденциальной информации. Это может произойти как случайно, так и преднамеренно, в результате атаки или ошибки сотрудников.</p>
+</blockquote>
+<p>🔹 <strong>Как предотвратить утечку данных?</strong></p>
+<p>✅ Использование <strong>DLP-систем (Data Loss Prevention)</strong> для контроля утечки данных.<br />
+✅ Обучение сотрудников <strong>кибергигиене</strong> и методам защиты информации.<br />
+✅ Настройка <strong>жёстких политик безопасности</strong> (VPN, шифрование, контроль доступа).<br />
+✅ Защита данных с помощью <strong>бэкапов и мониторинга аномальной активности</strong>.<br />
+✅ Регулярное обновление ПО и устранение уязвимостей.</p>
+<h2 id="22">🔹 22. Важность контроля доступа.</h2>
+<blockquote>
+<p><strong>Контроль доступа</strong> — это система мер и механизмов, позволяющая управлять правами пользователей на доступ к ресурсам (файлам, системам, данным). Это один из ключевых элементов кибербезопасности, предотвращающий несанкционированный доступ и защищающий информацию.</p>
+</blockquote>
+<p>🔹 <strong>Типы контроля доступа</strong></p>
+<p>📌 <strong>Discretionary Access Control (DAC)</strong> – дискреционный контроль
+Владельцы данных сами управляют правами доступа. Гибкий, но менее защищённый.</p>
+<p>📌 <strong>Mandatory Access Control (MAC)</strong> – мандатный контроль<br />
+Администраторы централизованно назначают уровни доступа. Используется в военных и государственных системах.</p>
+<p>📌 <strong>Role-Based Access Control (RBAC)</strong> – ролевой контроль<br />
+Права доступа назначаются на основе ролей (например, "менеджер", "разработчик"). Упрощает администрирование больших организаций.</p>
+<p>📌 <strong>Attribute-Based Access Control (ABAC)</strong> – атрибутный контроль<br />
+Доступ зависит от контекста (времени, местоположения, устройства). Гибкость, но сложность в настройке.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../pravo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Правовые вопросы">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Правовые вопросы
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../notes/ad_ldap_kerberos/" class="md-footer__link md-footer__link--next" aria-label="Next: AD, LDAP, KERBEROS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                AD, LDAP, KERBEROS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Олег Тарасов
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/objoracoda" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.5.5 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024q-.159.037-5.061 3.345-.72.495-1.302.48c-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789q.04-.324.893-.663 5.247-2.286 6.998-3.014c3.332-1.386 4.025-1.627 4.476-1.635"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/objoracoda" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.ode.copy", "content.tabs.link", "announce.dismiss", "navigation.footer", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.path", "navigation.tracking", "search.hilight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
