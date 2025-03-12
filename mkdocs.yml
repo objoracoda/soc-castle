@@ -51,6 +51,7 @@ nav:
     - 'Правовые вопросы': sobes/pravo.md
     - 'Сетевая безопасность': sobes/net_sec.md
   - 'Конспекты':
+      - 'Пирамида боли': notes/bol.md
       - 'AD, LDAP, KERBEROS': notes/ad_ldap_kerberos.md
       - 'MITRE ATT&CK': notes/mitreattack.md
       - 'Разбор полетов с собесов': notes/sobes_polety.md
