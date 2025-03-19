@@ -42,6 +42,13 @@ theme:
 
 nav:
   - 'Главная': index.md
+  - 'Конспекты':
+      - 'Server Side': notes/ss.md
+      - 'Client Side': notes/cs.md
+      - 'Пирамида боли': notes/bol.md
+      - 'AD, LDAP, KERBEROS': notes/ad_ldap_kerberos.md
+      - 'MITRE ATT&CK': notes/mitreattack.md
+      - 'Разбор полетов с собесов': notes/sobes_polety.md
   - 'Вопросы Собесов':
     - 'Анализ вредоносного ПО': sobes/analyse_po.md
     - 'Анализ логов SIEM': sobes/analyse_siem.md
@@ -50,11 +57,6 @@ nav:
     - 'Политика безопасности': sobes/polity_sec.md
     - 'Правовые вопросы': sobes/pravo.md
     - 'Сетевая безопасность': sobes/net_sec.md
-  - 'Конспекты':
-      - 'Пирамида боли': notes/bol.md
-      - 'AD, LDAP, KERBEROS': notes/ad_ldap_kerberos.md
-      - 'MITRE ATT&CK': notes/mitreattack.md
-      - 'Разбор полетов с собесов': notes/sobes_polety.md
   - 'Образовательные ресурсы': study_res/res.md
 
 
