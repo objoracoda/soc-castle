@@ -45,6 +45,7 @@ nav:
   - 'Конспекты':
       - 'Server Side': notes/ss.md
       - 'Client Side': notes/cs.md
+      - 'Linux Base': notes/linux_base.md
       - 'Пирамида боли': notes/bol.md
       - 'AD, LDAP, KERBEROS': notes/ad_ldap_kerberos.md
       - 'MITRE ATT&CK': notes/mitreattack.md
