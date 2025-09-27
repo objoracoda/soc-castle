@@ -43,6 +43,8 @@ theme:
 nav:
   - 'Главная': index.md
   - 'Конспекты':
+      - 'Повышение привелегий Win/Lin': notes/linwin.md
+      - 'Основы Nmap, GoBuster, Wfuzz': notes/tools.md
       - 'Server Side': notes/ss.md
       - 'Client Side': notes/cs.md
       - 'Linux Base': notes/linux_base.md
