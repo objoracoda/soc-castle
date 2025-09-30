@@ -42,6 +42,10 @@ theme:
 
 nav:
   - 'Главная': index.md
+  - 'Hacker Lab':
+      - 'О разделе': hackerlab/about.md
+      - 'Базовая авторизация': hackerlab/baseauth.md
+      - 'Присутствие отсутствия': hackerlab/protsuts.md
   - 'Конспекты':
       - 'Повышение привелегий Win/Lin': notes/linwin.md
       - 'Основы Nmap, GoBuster, Wfuzz': notes/tools.md
